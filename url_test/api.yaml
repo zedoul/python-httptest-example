@@ -1,0 +1,118 @@
+hosturl: "https://rutilus.fishbrain.com"
+connection_timeout: 1 #second
+read_timeout: 1 #second
+
+apis:
+#recent items test
+  catches:
+    url: "/catches"
+    name: ""
+    raise_for_status_required: True
+    content_type: "application/json; charset=utf-8"
+    content_length_threshold: 4000 #byte
+    number_of_elements: 10
+
+  species:
+    url: "/species"
+    name: ""
+    raise_for_status_required: True
+    content_type: "application/json; charset=utf-8"
+    content_length_threshold: 7000 #byte
+    number_of_elements: 10
+
+  methods:
+    url: "/methods"
+    name: ""
+    raise_for_status_required: True
+    content_type: "application/json; charset=utf-8"
+    content_length_threshold: 1000 #byte
+    number_of_elements: 13
+
+  moments:
+    url: "/moments"
+    name: ""
+    raise_for_status_required: False
+    http_status: '401 Unauthorized'
+    content_type: "application/json; charset=utf-8"
+    content_length_threshold: 70 #byte
+
+# verbosity test
+  catches_verb_1:
+    url: "/catches/81?verbosity=1"
+    name: ""
+    raise_for_status_required: True
+    content_type: "application/json; charset=utf-8"
+    content_length_threshold: 1000 #byte
+    number_of_elements: 12
+
+  catches_verb_2:
+    url: "/catches/81?verbosity=2"
+    name: ""
+    raise_for_status_required: True
+    content_type: "application/json; charset=utf-8"
+    content_length_threshold: 2500 #byte
+    number_of_elements: 13
+
+  catches_verb_3:
+    url: "/catches/81?verbosity=3"
+    name: ""
+    raise_for_status_required: True
+    content_type: "application/json; charset=utf-8"
+    content_length_threshold: 3000 #byte
+    number_of_elements: 15
+
+  catches_errorcase_1:
+    url: "/catches/-1"
+    name: ""
+    raise_for_status_required: False
+    http_status: "404 Not Found"
+    content_type: "application/json; charset=utf-8"
+    content_length_threshold: 1000 #byte
+    error_msg: "{u'errors': [u'The requested resource/collection was not found']}"
+
+  catches_errorcase_2:
+    url: "/catches/asdf"
+    name: ""
+    raise_for_status_required: False
+    http_status: "404 Not Found"
+    content_type: "application/json; charset=utf-8"
+    content_length_threshold: 1000 #byte
+    error_msg: "{u'errors': [u'The requested resource/collection was not found']}"
+
+  species_errorcase_1:
+    url: "/species/-1"
+    name: ""
+    raise_for_status_required: False
+    http_status: "404 Not Found"
+    content_type: "application/json; charset=utf-8"
+    content_length_threshold: 1000 #byte
+    error_msg: "{u'errors': [u'The requested resource/collection was not found']}"
+
+  species_errorcase_2:
+    url: "/species/asdf"
+    name: ""
+    raise_for_status_required: True
+#    raise_for_status_required: False
+#    http_status: "404 Not Found"
+    content_type: "application/json; charset=utf-8"
+    content_length_threshold: 3000 #byte
+    error_msg: "{u'errors': [u'The requested resource/collection was not found']}"
+
+  methods_errorcase_1:
+    url: "/methods/-1"
+    name: ""
+    raise_for_status_required: False
+    http_status: "404 Not Found"
+    content_type: "application/json; charset=utf-8"
+    content_length_threshold: 1000 #byte
+    error_msg: "{u'errors': [u'The requested resource/collection was not found']}"
+
+  methods_errorcase_2:
+    url: "/methods/asdf"
+    name: ""
+    raise_for_status_required: True
+#    raise_for_status_required: False
+#    http_status: "404 Not Found"
+    content_type: "application/json; charset=utf-8"
+    content_length_threshold: 1000 #byte
+    error_msg: "{u'localized_name': u'Unknown', u'type': u'method', u'id': 0}"
